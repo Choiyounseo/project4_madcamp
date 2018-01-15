@@ -109,10 +109,8 @@ class Authentication extends React.Component {
 
         const registerView = (
            <div className={styles.auth_box_content}>
-               <div className="row">
                    { inputBoxes }
                    <a onClick={this.handleRegister} className="waves-effect blue-grey darken-2 btn">CREATE</a>
-               </div>
            </div>
        );
 
@@ -123,11 +121,10 @@ class Authentication extends React.Component {
                         <div className="card-content">{this.props.mode ? "LOGIN" : "REGISTER"}</div>
                     </div>
                     <FadeIn>
-                      <div>{this.props.mode ? loginView : registerView }</div>
+                      <div className = "z-depth-3">{this.props.mode ? loginView : registerView }</div>
                     </FadeIn>
                   </div>
               </FadeIn>
-
         );
     }
 

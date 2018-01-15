@@ -16,6 +16,107 @@ h1{
 }
 /* h1: 임시 mypage 체크용.... -> 나중에 지우기!! */
 
+/* UploadFile */
+.uploadfile_box{
+  position: relative;
+  display: block;
+  top: 20px;
+  height: 90px;
+  text-align: center;
+}
+
+.uploadfile_box_upload{
+  display: inline-block;
+  width: 0px;
+  opacity: 0;
+}
+
+.uploadfile_box_music{
+  height: 60PX;
+  width: 60px;
+  background-image: url("https://image.flaticon.com/icons/svg/254/254057.svg");
+  background-size: cover;
+  /* make text transparent */
+  color: transparent;
+  border-radius: 100%;
+  background-color: white;
+}
+
+.uploadfile_box_document{
+  height: 60PX;
+  width: 60px;
+  background-image: url("https://image.flaticon.com/icons/svg/167/167756.svg");
+  background-size: cover;
+  /* make text transparent */
+  color: transparent;
+  border-radius: 100%;
+  background-color: white;
+}
+
+.uploadfile_box_picture{
+  height: 60PX;
+  width: 60px;
+  background-image: url("https://image.flaticon.com/icons/svg/214/214333.svg");
+  background-size: cover;
+  /* make text transparent */
+  color: transparent;
+  border-radius: 100%;
+  background-color: white;
+}
+
+.uploadfile_submit{
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.uploadfile_submit button{
+  border-radius: 30px;
+  background-color: white;
+}
+
+/* MyRoom1 */
+.myroom1_box{
+  left: 15%;
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  background-image: url("http://4.bp.blogspot.com/-GLGhtQ-CJlg/Urh-1l-LuuI/AAAAAAAAL9I/YUCDq-MOvI0/s1600/IMG_1013.JPG");
+  background-size:cover;
+  display:block;
+}
+
+/* MyRoom2 */
+.myroom2_box{
+  left: 15%;
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  background-image: url("https://storge.pic2.me/c/1360x800/507/5523ade2c825a.jpg");
+  background-size:cover;
+  display:block;
+}
+
+/* MyRoom3 */
+.myroom3_box{
+  left: 15%;
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  background-image: url("http://arafen.com/a/f/d/decorating-ideas-for-blue-living-rooms-milestoone-3d-design-create-room-concept-and-like-real_room-decoration-ideas_a-boys-room-design-for-interior-childrens-bedrooms-and-architecture-web.jpg");
+  background-size:cover;
+  display:block;
+}
+
+.myroom4_box{
+  left: 15%;
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  background-image: url("http://www.download3dhouse.com/wp-content/uploads/2013/02/Yellow-background-wall-wood-flooring-for-the-living-room.jpg");
+  background-size:cover;
+  display:block;
+}
+
 /* Mypagebackground */
 .chooseroom_box{
   left: 15%;
@@ -81,13 +182,14 @@ li a{
 .box_layout_whenlogin {
   position:relative;
   display: block;
-  height: 80px;
+  height: 60px;
   text-align: center;
 }
 
 .box_layout{
-  position: relative;
-  top: 50%;
+  position: absolute;
+  top: 85%;
+  width: 100%;
   display:block;
   height: 100px;
   text-align: center;

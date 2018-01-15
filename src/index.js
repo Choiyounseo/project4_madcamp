@@ -23,7 +23,7 @@ ReactDOM.render(
             <Route path="register" component={Register}/>
             <Route path="/:id" component={Mypage}/>
             <Route path="/:id/roomimage" component={Roomimage}/>
-            <Route path="/:id/myroom1" component={MyRoom} />
+            <Route path="/:id/:i" component={MyRoom} />
         </Route>
     </Router>
   </Provider>, rootElement

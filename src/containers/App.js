@@ -73,16 +73,15 @@ class App extends React.Component {
 
 
     render() {
-        let re = /(register)/; //나중에 다른거 필요하면 채우면 register지우기!
-        let isAuth = re.test(this.props.location.pathname);
 
         let isNotNullpage = (this.props.location.pathname === "/")? <Mypage backerror={true}/>: undefined; //login후, 억지로 /home링크로 돌아올경우
 
         return(
           <div>
-              {isAuth? undefined: <Header username={this.props.currentUser}
-                                          isLoggedIn={this.props.status.isLoggedIn}
-                                          onLogout={this.handleLogout}/>}
+              <Header username={this.props.currentUser}
+                      isLoggedIn={this.props.status.isLoggedIn}
+                      onLogout={this.handleLogout}
+                      pathname = {this.props.location.pathname}/>
 
               { this.props.isLoggedIn ? isNotNullpage : <h10><p>ROOM DRIVER</p></h10>}
               {this.props.children}

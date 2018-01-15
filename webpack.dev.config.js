@@ -63,7 +63,7 @@ module.exports = {
                 // Inline images smaller than 10kb as data URIs
                 limit: 10000
               }
-            }
+           },
         ]
     },
 
