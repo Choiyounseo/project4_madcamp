@@ -9,6 +9,8 @@ import bodyParser from 'body-parser'; // PARSE HTML BODY
 
 import mongoose from 'mongoose';
 import session from 'express-session';
+import cors from 'cors';
+// var cors = require('cors');
 
 import api from './routes';
 
@@ -20,6 +22,7 @@ const devPort = 4000;
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cors());
 
 /* mongodb connection */
 const db = mongoose.connection;

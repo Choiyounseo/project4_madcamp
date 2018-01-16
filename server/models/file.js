@@ -6,7 +6,8 @@ const Files = new Schema ({
     filename: String,
     mimetype: String,
     size: { type: Date, default: Date.now },
-    username: String
+    username: String,
+    roomnumber: Number,
 });
 
 export default mongoose.model('file', Files);

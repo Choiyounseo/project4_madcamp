@@ -2,8 +2,40 @@ import React from 'react';
 import {Uploadfile} from 'components';
 import { Link } from 'react-router';
 import styles from '../style.css';
+import { connect } from 'react-redux';
+import { uploadRequest } from 'actions/fileupload';
+import { browserHistory } from 'react-router';
+
+//Uploadfile component를 위한 handle함수 Header에서 만들기( Header에서 Uploadfile을 부르기 때문...! )
 
 class Header extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.handleUpload = this.handleUpload.bind(this);
+    }
+
+    handleUpload(filetype, roomnumber, id, file) {
+
+        return this.props.uploadRequest(filetype, roomnumber, id, file).then(
+            () => {
+                if(this.props.status === "SUCCESS") {
+                    let uploadfilesData = {
+
+                    }; //reducers에 status넣을 것 추가후, 사용가능!
+
+                    Materialize.toast('Upload SUCCESS!', 2000);
+                    browserHistory.push(`${this.props.pathname}`); //제대로 작동할지 의문......!! 다시 꼭 check!
+                    return true;
+                } else {
+                    let $toastContent = $('<span style="color: #FFB4BA">Fail to Upload');
+                    Materialize.toast($toastContent, 2000);
+                    return false;
+                }
+            }
+        );
+    }
+
     render() {
 
         const loginButton = (
@@ -22,12 +54,10 @@ class Header extends React.Component {
             </li>
         );
 
-        const upload = (<li><Uploadfile pathname = {this.props.pathname} /></li>);
-
-        let path1 = (this.props.pathname === (`/${this.props.username}`+ "/1")) ? upload : undefined;
-        let path2 = (this.props.pathname === (`/${this.props.username}`+ "/2")) ? upload : undefined;
-        let path3 = (this.props.pathname === (`/${this.props.username}`+ "/3")) ? upload : undefined;
-        let path4 = (this.props.pathname === (`/${this.props.username}`+ "/4")) ? upload : undefined;
+        let path1 = (this.props.pathname === (`/${this.props.username}`+ "/1")) ? (<li><Uploadfile rnumber = {1} onUpload={this.handleUpload} username={this.props.username} /></li>) : undefined;
+        let path2 = (this.props.pathname === (`/${this.props.username}`+ "/2")) ? (<li><Uploadfile rnumber = {2} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
+        let path3 = (this.props.pathname === (`/${this.props.username}`+ "/3")) ? (<li><Uploadfile rnumber = {3} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
+        let path4 = (this.props.pathname === (`/${this.props.username}`+ "/4")) ? (<li><Uploadfile rnumber = {4} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
 
         const headerlists = (
           <div>
@@ -72,6 +102,7 @@ Header.propTypes = {
     isLoggedIn: React.PropTypes.bool,
     onLogout: React.PropTypes.func,
     pathname: React.PropTypes.string,
+    username: React.PropTypes.string
 };
 
 Header.defaultProps = {
@@ -79,4 +110,18 @@ Header.defaultProps = {
     onLogout: () => { console.error("logout function not defined");}
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return{
+      status: state.fileupload.upload.status
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        uploadRequest: (filetype, roomnumber, id, filename, mimetype, size ) => {
+            return dispatch(uploadRequest(filetype, roomnumber, id, filename, mimetype, size))
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
