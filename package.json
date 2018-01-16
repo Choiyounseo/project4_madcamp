@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "atob": "^2.0.3",
     "axios": "^0.13.1",
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.9.1",

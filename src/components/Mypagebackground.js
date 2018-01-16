@@ -5,7 +5,7 @@ class Mypagebackground extends React.Component{
     render(){
         return(
           <div className = {styles.chooseroom_box}>
-            <p>Your room!</p>
+            <p>ROOM DRIVER</p>
           </div>
         );
     }

@@ -5,16 +5,19 @@ const router = express.Router();
 
 const multer = require('multer');
 
+
 const musicupload = multer({
   storage: multer.diskStorage({
     destination: function(req, file, cb){
+      console.log(file);
       cb(null, 'public/music/')
     },
     filename: function (req, file, cb) {
-      cb(null, req.body.file.originalname);
+      cb(null, file.originalname);
     }
   }),
 });
+//req.body.file
 
 const documentupload = multer({
   storage: multer.diskStorage({
@@ -40,18 +43,20 @@ const pictureupload = multer({
 // new Date().valueOf() + path.extname(file.originalname)
 //single( {button's name -> 'music'} )
 router.post('/music', musicupload.single('music'), (req, res) => {
-    const filename = req.body.file.filename;
-    const mimetype = req.body.file.mimetype;
-    const size = req.body.file.size;
-    const username = req.body.username;
-    const roomnumber = req.body.roomnumber;
+    const filename = req.file.filename;
+    const mimetype = req.file.mimetype;
+    const size = req.file.size;
+    const username = req.session.loginInfo.username;
+    const roomnumber = 1;
 
     Files.findOneAndUpdate(
       { "filename": filename },
-      { "filename": filename, "mimetype": mimetype, "size": size, "username": username , "roomnumber": roomnumber },
-      { "upsert": 1 }
-      // (err) => { if (err) { console.error(err); res.json({ result: 0}); return; }}
+      { "filename": filename, "mimetype": mimetype, "size": size, "username": username, "roomnumber": roomnumber },
+      { "upsert": 1 },
+       (err) => { if (err) { console.error(err); res.json({ result: 0}); return; }}
     );
+
+    res.send("FINISH");
 });
 
 router.post('/document', documentupload.single('document'), (req, res) => {
@@ -67,6 +72,7 @@ router.post('/document', documentupload.single('document'), (req, res) => {
       { "upsert": 1 },
       (err) => { if (err) { console.error(err); res.json({ result: 0}); return; }}
     );
+    res.send("FINISH");
 });
 
 router.post('/picture', pictureupload.single('picture'), (req, res) => {
@@ -82,6 +88,7 @@ router.post('/picture', pictureupload.single('picture'), (req, res) => {
       { "upsert": 1 },
       (err) => { if (err) { console.error(err); res.json({ result: 0}); return; }}
     );
+    res.send("FINISH");
 });
 
 export default router;

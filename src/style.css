@@ -14,7 +14,86 @@ h1{
   color: #b71c1c;
   text-shadow: 1px 2px 2px #ffebee;
 }
-/* h1: 임시 mypage 체크용.... -> 나중에 지우기!! */
+/* Mypagebackground */
+.demo {
+    position:relative;
+    width:100%;
+    height:300px;
+    overflow:hidden;
+    float:left;
+    margin-right:20px
+}
+
+.demo figure {
+    margin:0;
+    padding:0;
+    position:relative;
+    cursor:pointer;
+    margin-left:-50px
+}
+.demo figure img {
+    display:block;
+    position:relative;
+    width: 100%;
+    height: 300px;
+    z-index:10;
+    margin:-15px 0
+}
+.demo figure figcaption {
+    display:block;
+    position:absolute;
+    z-index:5;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box
+}
+.demo figure h2 {
+    font-family:'Lato';
+    color:#fff;
+    font-size:18px;
+    margin-left: 18px;
+}
+.demo figure h6 {
+    display:block;
+    font-family:'Lato';
+    font-size:13px;
+    line-height:18px;
+    margin:0;
+    margin-left: 18px;
+    color:#fff;
+}
+.demo figure figcaption {
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    padding:29px 44px;
+    background-color:rgba(26,76,110,0.5);
+    text-align:center;
+    backface-visibility:hidden;
+    -webkit-transform:rotateY(-180deg);
+    -moz-transform:rotateY(-180deg);
+    transform:rotateY(-180deg);
+    -webkit-transition:all .5s;
+    -moz-transition:all .5s;
+    transition:all .5s
+}
+.demo figure img {
+    backface-visibility:hidden;
+    -webkit-transition:all .5s;
+    -moz-transition:all .5s;
+    transition:all .5s
+}
+.demo figure:hover img,figure.hover img {
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    transform:rotateY(180deg)
+}
+.demo figure:hover figcaption,figure.hover figcaption {
+    -webkit-transform:rotateY(0);
+    -moz-transform:rotateY(0);
+    transform:rotateY(0)
+}
 
 /* UploadFile */
 .uploadfile_box{
@@ -74,49 +153,47 @@ h1{
   background-color: white;
 }
 
-/* MyRoom1 */
-.myroom1_box{
+/* MyRoom */
+.myroom_box{
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.myroom_background{
   left: 15%;
   width: 85%;
   height: 100%;
   position: absolute;
-  background-image: url("http://4.bp.blogspot.com/-GLGhtQ-CJlg/Urh-1l-LuuI/AAAAAAAAL9I/YUCDq-MOvI0/s1600/IMG_1013.JPG");
   background-size:cover;
-  display:block;
+  display: block;
+  z-index: 2;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* MyRoom2 */
-.myroom2_box{
-  left: 15%;
-  width: 85%;
-  height: 100%;
+/* Savebtn */
+.savebtn h1{
+  user-select: none;
+  z-index: 6;
+  font-size: 40px;
+  color: white;
+  background-color: #c62828;
+  border-radius: 20px;
   position: absolute;
-  background-image: url("https://storge.pic2.me/c/1360x800/507/5523ade2c825a.jpg");
-  background-size:cover;
-  display:block;
+  top: 85%;
+  left: 85%;
+  height: 50px;
+  width: 150px;
+  font-weight: 500;
+  text-shadow: 2px 3px 3px #880e4f;
+  border: 2px solid #ef9a9a;
+  font-family: unset;
 }
-
-/* MyRoom3 */
-.myroom3_box{
-  left: 15%;
-  width: 85%;
-  height: 100%;
-  position: absolute;
-  background-image: url("http://arafen.com/a/f/d/decorating-ideas-for-blue-living-rooms-milestoone-3d-design-create-room-concept-and-like-real_room-decoration-ideas_a-boys-room-design-for-interior-childrens-bedrooms-and-architecture-web.jpg");
-  background-size:cover;
-  display:block;
-}
-
-.myroom4_box{
-  left: 15%;
-  width: 85%;
-  height: 100%;
-  position: absolute;
-  background-image: url("http://www.download3dhouse.com/wp-content/uploads/2013/02/Yellow-background-wall-wood-flooring-for-the-living-room.jpg");
-  background-size:cover;
-  display:block;
-}
-
 /* Mypagebackground */
 .chooseroom_box{
   left: 15%;

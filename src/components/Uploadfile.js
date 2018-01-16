@@ -26,6 +26,7 @@ class Uploadfile extends React.Component{
           ftype: e.target.name,
           file: e.target.files[0]
        });
+
        Materialize.toast(e.target.name);
     }
 
@@ -35,23 +36,59 @@ class Uploadfile extends React.Component{
       let roomnumber = this.props.rnumber;
       let id = this.props.username;
 
-      this.props.onUpload( filetype, roomnumber, id, file);
+      let formData = new FormData();
+      formData.append('filename', file.name);
+      formData.append('mimetype', file.type);
+      formData.append('size', file.size);
+
+      this.props.onUpload( filetype, roomnumber, id, file, formData);
     }
 
     render(){
 
-      const musicBox = (
-        <div className={styles.uploadfile_box} name="music" encType="multipart/form-data" noValidate>
-          <input className={styles.uploadfile_box_upload} readOnly="Music" type="file" name="music" onChange={this.handleChange}/>
-          <button className={styles.uploadfile_box_music} >Music</button>
-          <div className = {styles.uploadfile_submit}><button onClick={this.handleUpload}> MUSIC </button></div>
-        </div>
-      );
+      // const musicBox = (
+      //   <div className={styles.uploadfile_box} name="music" encType="multipart/form-data" noValidate>
+      //     <input className={styles.uploadfile_box_upload} readOnly="Music" type="file" name="music" onChange={this.handleChange}/>
+      //     <button className={styles.uploadfile_box_music} >Music</button>
+      //     <div className = {styles.uploadfile_submit}><button onClick={this.handleUpload}> MUSIC </button></div>
+      //   </div>
+      // );
+      //
+      // const documentBox = (
+      //   <div className={styles.uploadfile_box} name="document" encType="multipart/form-data" noValidate>
+      //     <input className={styles.uploadfile_box_upload} readOnly="Document" type="file" name="document" onChange={this.handleChange}/>
+      //     <button className={styles.uploadfile_box_document} >Document</button>
+      //     <div className = {styles.uploadfile_submit}><button onClick={this.handleUpload}> DOCU </button></div>
+      //   </div>
+      // );
+      //
+      // const pictureBox = (
+      //   <div className={styles.uploadfile_box} name="picture" encType="multipart/form-data" noValidate>
+      //     <input className={styles.uploadfile_box_upload} readOnly="Picture" type="file" name="picture" onChange={this.handleChange}/>
+      //     <button className={styles.uploadfile_box_picture} >Picture</button>
+      //     <div className = {styles.uploadfile_submit}><button onClick={this.handleUpload}> PICTU </button></div>
+      //   </div>
+      // );
 
       return(
           <div>
-            {musicBox}
+            <form className={styles.uploadfile_box} method="post" action="/api/file/music" encType="multipart/form-data" noValidate>
+              <input className={styles.uploadfile_box_upload} readOnly="Music" type="file" name="music"/>
+              <button className={styles.uploadfile_box_music}>Music</button>
+              <div className = {styles.uploadfile_submit}><button type="submit"> MUSIC </button></div>
+            </form>
 
+            <form className={styles.uploadfile_box} method="post" action="/api/file/document" encType="multipart/form-data" noValidate>
+              <input className={styles.uploadfile_box_upload} readOnly="Documents" type="file" name="document"/>
+              <button className={styles.uploadfile_box_document}>Documents</button>
+              <div className = {styles.uploadfile_submit}><button type="submit"> DOCU </button></div>
+            </form>
+
+            <form className={styles.uploadfile_box} method="post" action="/api/file/picture" encType="multipart/form-data" noValidate>
+              <input className={styles.uploadfile_box_upload} readOnly="Picture" type="file" name="picture" />
+              <button className={styles.uploadfile_box_picture}>Picture</button>
+              <div className = {styles.uploadfile_submit}><button type="submit"> PICTU </button></div>
+            </form>
           </div>
       );
     }

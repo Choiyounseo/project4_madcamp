@@ -5,6 +5,7 @@ import styles from '../style.css';
 import { connect } from 'react-redux';
 import { uploadRequest } from 'actions/fileupload';
 import { browserHistory } from 'react-router';
+import infoblack from '../images/info.jpg';
 
 //Uploadfile component를 위한 handle함수 Header에서 만들기( Header에서 Uploadfile을 부르기 때문...! )
 
@@ -15,9 +16,11 @@ class Header extends React.Component {
         this.handleUpload = this.handleUpload.bind(this);
     }
 
-    handleUpload(filetype, roomnumber, id, file) {
-
-        return this.props.uploadRequest(filetype, roomnumber, id, file).then(
+    handleUpload(filetype, roomnumber, id, file, formData) {
+        Materialize.toast("FILE!", 6000);
+        Materialize.toast(file, 6000);
+        Materialize.toast(file.name, 6000);
+        return this.props.uploadRequest(filetype, roomnumber, id, file, formData).then(
             () => {
                 if(this.props.status === "SUCCESS") {
                     let uploadfilesData = {
@@ -65,6 +68,22 @@ class Header extends React.Component {
           </div>
         );
 
+        const madebyinfo = (
+          <ul className={styles.demo}>
+              <li>
+                  <figure>
+                      <img src = {'/'+infoblack} alt=""/>
+                      <figcaption>
+                          <h2> Information</h2>
+                          <h6>
+                            Make your own room and save your files! Enjoy decorating your own room! <br /> <br /> <br/> <br /> Made by younseo. 찬쥬찬쥬
+                          </h6>
+                      </figcaption>
+                  </figure>
+              </li>
+          </ul>
+        );
+
         const uploadlists = (
             <div>
                 {path1}
@@ -83,7 +102,7 @@ class Header extends React.Component {
                   </Link>
 
                   <ul className = {styles.box_layout_whenlogin}>
-                      {this.props.isLoggedIn ? headerlists : undefined}
+                      {this.props.isLoggedIn ? headerlists : madebyinfo}
                   </ul>
 
                   <ul className ={styles.box_layout_whenroomchosen}>
