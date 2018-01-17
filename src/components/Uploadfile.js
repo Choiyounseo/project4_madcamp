@@ -3,6 +3,7 @@ import styles from '../style.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FontIcon from 'material-ui/FontIcon';
 import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import {Draggable} from 'components';
 
 //filetype, roomnumber, id, filename, mimetype, size
 //id: Header에서 this.props.username넘겨줌!

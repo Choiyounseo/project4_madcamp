@@ -9,5 +9,6 @@ import MyRoom4 from './MyRoom4';
 import Uploadfile from './Uploadfile';
 import Draggable from './Draggable';
 import Savebtn from './Savebtn';
+import Getbtn from './Getbtn';
 
-export { Header, Authentication, Chooseroom, Mypagebackground, MyRoom1, MyRoom2, MyRoom3, MyRoom4, Savebtn, Uploadfile, Draggable };
+export { Header, Authentication, Chooseroom, Mypagebackground, MyRoom1, MyRoom2, MyRoom3, MyRoom4, Savebtn, Getbtn, Uploadfile, Draggable };

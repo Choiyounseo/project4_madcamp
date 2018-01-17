@@ -22,7 +22,8 @@ class Draggable extends React.Component{
           position: 'absolute',
           backgroundImage: 'url(' +cd_cover + ')',
           backgroundSize: "100% 100%",
-          left: "15%",
+          left: this.props.leftpos,
+          top: this.props.toppos,
           zIndex: 5
         },
         foreground:{
@@ -44,7 +45,8 @@ class Draggable extends React.Component{
           position: 'absolute',
           backgroundImage: 'url(' +books_stack + ')',
           backgroundSize: "100% 100%",
-          left: "15%",
+          left: this.props.leftpos,
+          top: this.props.toppos,
           zIndex: 5
         },
         foreground: {
@@ -66,7 +68,8 @@ class Draggable extends React.Component{
           position: 'absolute',
           backgroundImage: 'url(' +picture_frame + ')',
           backgroundSize: "100% 100%",
-          left: "15%",
+          left: this.props.leftpos,
+          top: this.props.toppos,
           zIndex: 5
         },
         foreground: {
@@ -102,7 +105,7 @@ class Draggable extends React.Component{
       a.style.display = 'none';
       document.body.appendChild(a);
       a.click();
-      a.delete();
+      // a.delete();
     }
   }
 

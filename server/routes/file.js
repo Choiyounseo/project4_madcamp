@@ -43,10 +43,57 @@ const pictureupload = multer({
   }),
 });
 
-//router.use('/music',express.static('public'));
 
+router.get('/get',function(req,res){
+    //Info to query with: username.
+    console.log("got it");
+    console.log(user);
+    /*This should work on the website */
+    // const username = req.session.loginInfo.username;
+
+    //const username = "younseo";
+    var array;
+    Files.find({"username":user},{"filename":1,"filetype":1, "leftpos":1, "toppos":1, "path":1}, (err, data) => {
+      //Must deal with data here since async.
+      array = data;
+      console.log(array);
+      res.send(array);
+    });
+
+    //Info I should send: filename, position,
+});
+
+//Post request from save button. Update all positions.
+router.post('/save', function(req,res){
+  var array = req.body;
+
+  var i;
+  var filename;
+  for(i = 0; i < array.length; i++){
+    filename = array[i].name;
+    var left = array[i].left;
+    var top = array[i].top;
+    //console.log(filename);
+    //console.log(left);
+    //console.log(top);
+
+    Files.findOneAndUpdate(
+      { "filename": filename },
+      { "leftpos": left,"toppos":top },
+      { "upsert": 1 },function(err){
+        Files.find({"filename": filename}, (err, data) => {
+          //Must deal with data here since async.
+          console.log(data);
+        });
+      }
+    );
+  }
+});
+
+//router.use('/music',express.static('public'));
 // new Date().valueOf() + path.extname(file.originalname)
 //single( {button's name -> 'music'} )
+var user;
 router.post('/music', musicupload.single('music'), (req, res,next) => {
     console.log(req.file);
     console.log("original file above");
@@ -57,6 +104,7 @@ router.post('/music', musicupload.single('music'), (req, res,next) => {
     const filetype = req.file.fieldname;
     const path = req.file.path;
     const username = req.session.loginInfo.username;
+    user = username;
     const roomnumber = 0;
     const leftpos = 0;
     const toppos = 0;

@@ -201,6 +201,22 @@ h1{
   border: 2px solid #ef9a9a;
   font-family: unset;
 }
+
+.getbtn button{
+  user-select: none;
+  z-index: 6;
+  font-size: 40px;
+  color: white;
+  background-color: #c62828;
+  border-radius: 25px;
+  position: absolute;
+  top: 75%;
+  left: 85%;
+  font-weight: 500;
+  text-shadow: 2px 3px 3px #880e4f;
+  border: 2px solid #ef9a9a;
+  font-family: unset;
+}
 /* Mypagebackground */
 .chooseroom_box{
   left: 15%;
