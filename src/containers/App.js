@@ -1,14 +1,21 @@
 import React from 'react';
-import { Header} from 'components';
+import { Header, Mypagebackground} from 'components';
 import { Mypage } from 'containers';
 import { connect } from 'react-redux';
 import { getStatusRequest, logoutRequest } from 'actions/authentication';
 import { browserHistory } from 'react-router';
 
+/* reallogout: 실제 logout이 아닌, 파일 업로드후 redirect로 /username/roomnumber를 하면 username과 isLoggedIn정보를 제대로 받지
+못해서 맨 처음 메인 화면 페이지로 튕겨버림. 로그인이 되어있었던 정보가 없어져서 다시 로그인을 해야 하는 불편함이 존재.
+이를 방지 위해 'reallogout'변수 선언, 실제로 only logout 버튼을 눌렀을 경우에만 튕기도록 만들예정
+reallogout=1일 경우가 정말 logout을 한 경우!*/
 class App extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = {
+          reallogout: 0
+        }
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -23,6 +30,9 @@ class App extends React.Component {
                 };
                 browserHistory.push('/');
                 document.cookie = 'key='+ btoa(JSON.stringify(loginData));
+                this.setState({
+                    reallogout: 1
+                });
             }
         );
     }
@@ -81,9 +91,10 @@ class App extends React.Component {
               <Header username={this.props.currentUser}
                       isLoggedIn={this.props.status.isLoggedIn}
                       onLogout={this.handleLogout}
-                      pathname = {this.props.location.pathname}/>
+                      pathname = {this.props.location.pathname}
+                      />
 
-              { this.props.isLoggedIn ? isNotNullpage : <h10><p>ROOM DRIVER</p></h10>}
+                    { this.props.status.isLoggedIn ? <Mypagebackground /> : <h10><p>ROOM DRIVER</p></h10>}
               {this.props.children}
           </div>
         );

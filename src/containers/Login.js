@@ -11,7 +11,7 @@ class Login extends React.Component {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
     }
-
+    // browserHistory.push(`/${id}`);
     handleLogin(id, pw) {
         return this.props.loginRequest(id,pw).then(
           ()=> {
@@ -24,7 +24,7 @@ class Login extends React.Component {
                   document.cookie = 'key=' + btoa(JSON.stringify(loginData));
 
                   Materialize.toast('Welcome, ' + id+ '!', 2000);
-                  browserHistory.push(`/${id}`);
+                  browserHistory.push(`/`);
                   return true;
               } else{
                   let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');

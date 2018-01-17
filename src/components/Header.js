@@ -56,15 +56,15 @@ class Header extends React.Component {
                 <a>Hello, {this.props.username}!</a>
             </li>
         );
-
-        let path1 = (this.props.pathname === (`/${this.props.username}`+ "/1")) ? (<li><Uploadfile rnumber = {1} onUpload={this.handleUpload} username={this.props.username} /></li>) : undefined;
-        let path2 = (this.props.pathname === (`/${this.props.username}`+ "/2")) ? (<li><Uploadfile rnumber = {2} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
-        let path3 = (this.props.pathname === (`/${this.props.username}`+ "/3")) ? (<li><Uploadfile rnumber = {3} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
-        let path4 = (this.props.pathname === (`/${this.props.username}`+ "/4")) ? (<li><Uploadfile rnumber = {4} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
-
+// (this.props.pathname === (`/${this.props.username}`+ "/1")) ?
+        // let path1 = (this.props.pathname === ("/1")) ? (<li><Uploadfile rnumber = {1} onUpload={this.handleUpload} username={this.props.username} /></li>) : undefined;
+        // let path2 = (this.props.pathname === ("/2")) ? (<li><Uploadfile rnumber = {2} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
+        // let path3 = (this.props.pathname === ("/3")) ? (<li><Uploadfile rnumber = {3} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
+        // let path4 = (this.props.pathname === ("/4")) ? (<li><Uploadfile rnumber = {4} onUpload={this.handleUpload} username={this.props.username}/></li>) : undefined;
+// <Link to = {`/${this.props.username}`+ "/roomimage"} >
         const headerlists = (
           <div>
-            <li><Link to = {`/${this.props.username}`+ "/roomimage"} >Choose Room</Link></li>
+            <li><Link to = "/roomimage" >Choose Room</Link></li>
           </div>
         );
 
@@ -84,29 +84,30 @@ class Header extends React.Component {
           </ul>
         );
 
-        const uploadlists = (
-            <div>
-                {path1}
-                {path2}
-                {path3}
-                {path4}
-            </div>
-        );
+        // const uploadlists = (
+        //     <div>
+        //         {path1}
+        //         {path2}
+        //         {path3}
+        //         {path4}
+        //     </div>
+        // );
+//(this.props.isLoggedIn)? `/${this.props.username}` : "/";
+        const mypagepath = (this.props.isLoggedIn)? `/${this.props.username}` : "/";
+// Link to={mypagepath} -> Link to="/"로 변경!
+        // <p>{this.props.pathname}</p>
+        // madebyinfo
 
-        const mypagepath = this.props.isLoggedIn? `/${this.props.username}` : "/";
-
-        // <h1>{this.props.pathname}</h1>
+        // <ul className ={styles.box_layout_whenroomchosen}>
+        //     {uploadlists}
+        // </ul>
         return (
           <box className = "z-depth-5">
-                  <Link to={mypagepath} className={styles.box_logo}>ROOM_DRIVER <br/> <div className={styles.box_semilogo}>Make your own Room!</div>
+                  <Link to="/" className={styles.box_logo}>ROOM_DRIVER <br/> <div className={styles.box_semilogo}>Make your own Room!</div>
                   </Link>
 
                   <ul className = {styles.box_layout_whenlogin}>
                       {this.props.isLoggedIn ? headerlists : madebyinfo}
-                  </ul>
-
-                  <ul className ={styles.box_layout_whenroomchosen}>
-                      {uploadlists}
                   </ul>
 
                   <ul className={styles.box_layout}>

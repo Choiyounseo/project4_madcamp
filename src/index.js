@@ -21,9 +21,9 @@ ReactDOM.render(
             <Route path="home" component={Home}/>
             <Route path="login" component={Login}/>
             <Route path="register" component={Register}/>
+            <Route path="roomimage" component={Roomimage}/>
+            <Route path="/:i" component={MyRoom} />
             <Route path="/:id" component={Mypage}/>
-            <Route path="/:id/roomimage" component={Roomimage}/>
-            <Route path="/:id/:i" component={MyRoom} />
         </Route>
     </Router>
   </Provider>, rootElement

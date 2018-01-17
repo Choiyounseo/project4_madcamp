@@ -13,11 +13,59 @@ class Uploadfile extends React.Component{
         super(props);
         this.state = {
             ftype: "",
-            file: ""
+            file: "",
+            inputValue: "",
+            path: ""
         };
         this.handleUpload = this.handleUpload.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.updateMusic = this.updateMusic.bind(this);
+        this.updatePicture = this.updatePicture.bind(this);
+        this.updateDocument = this.updateDocument.bind(this);
     }
+
+    updateMusic(evt){
+      var temp = evt.target.value;
+      temp = temp.replace("C:\\fakepath\\", "");
+      var pathAddend = "143.248.36.222:4000/music/";
+      var realpath = pathAddend + temp;
+      this.setState({
+        inputValue: temp,
+        path: realpath
+      });
+      this.props.onchangeValue(temp, realpath, 'music');
+      // console.log(temp);
+      // console.log(realpath);
+    }
+
+    updateDocument(evt){
+      var temp = evt.target.value;
+      temp = temp.replace("C:\\fakepath\\", "");
+      var pathAddend = "143.248.36.222:4000/document/";
+      var realpath = pathAddend + temp;
+      this.setState({
+        inputValue: temp,
+        path: realpath
+      });
+      this.props.onchangeValue(temp, realpath, 'document');
+      // console.log(temp);
+      // console.log(realpath);
+    }
+
+    updatePicture(evt){
+      var temp = evt.target.value;
+      temp = temp.replace("C:\\fakepath\\C:", "");
+      var pathAddend = "143.248.36.222:4000/picture/";
+      var realpath = pathAddend + temp;
+      this.setState({
+        inputValue: temp,
+        path: realpath
+      });
+      this.props.onchangeValue(temp, realpath, 'picture');
+      // console.log(temp);
+      // console.log(realpath);
+    }
+
 //       Materialize.toast( e.target.name , 2000);
     handleChange(e) {
        let nextState = {};
@@ -71,46 +119,28 @@ class Uploadfile extends React.Component{
       // );
 
       return(
-          <div>
+          <div className ={styles.uploadfile_header}>
             <form className={styles.uploadfile_box} method="post" action="/api/file/music" encType="multipart/form-data" noValidate>
-              <input className={styles.uploadfile_box_upload} readOnly="Music" type="file" name="music"/>
-              <button className={styles.uploadfile_box_music}>Music</button>
+              <input className={styles.uploadfile_box_upload} readOnly="Music" type="file" name="music" onChange = {evt => this.updateMusic(evt)} value = {this.state.inputValue}/>
+              <button disabled className={styles.uploadfile_box_music}>Music</button>
               <div className = {styles.uploadfile_submit}><button type="submit"> MUSIC </button></div>
             </form>
 
             <form className={styles.uploadfile_box} method="post" action="/api/file/document" encType="multipart/form-data" noValidate>
-              <input className={styles.uploadfile_box_upload} readOnly="Documents" type="file" name="document"/>
-              <button className={styles.uploadfile_box_document}>Documents</button>
+              <input className={styles.uploadfile_box_upload} readOnly="Documents" type="file" name="document"  onChange = {evt => this.updateDocument(evt)} value = {this.state.inputValue}/>
+              <button disabled className={styles.uploadfile_box_document}>Documents</button>
               <div className = {styles.uploadfile_submit}><button type="submit"> DOCU </button></div>
             </form>
 
             <form className={styles.uploadfile_box} method="post" action="/api/file/picture" encType="multipart/form-data" noValidate>
-              <input className={styles.uploadfile_box_upload} readOnly="Picture" type="file" name="picture" />
-              <button className={styles.uploadfile_box_picture}>Picture</button>
+              <input className={styles.uploadfile_box_upload} readOnly="Picture" type="file" name="picture" onChange = {evt => this.updatePicture(evt)} value = {this.state.inputValue} />
+              <button disabled className={styles.uploadfile_box_picture}>Picture</button>
               <div className = {styles.uploadfile_submit}><button type="submit"> PICTU </button></div>
             </form>
           </div>
       );
     }
 }
-// <form className={styles.uploadfile_box} method="post" action="/api/file/music" encType="multipart/form-data" noValidate>
-//   <input className={styles.uploadfile_box_upload} readOnly="Music" type="file" name="music"/>
-//   <button className={styles.uploadfile_box_music}>Music</button>
-//   <div className = {styles.uploadfile_submit}><button type="submit"> MUSIC </button></div>
-// </form>
-//
-// <form className={styles.uploadfile_box} method="post" action="/api/file/document" encType="multipart/form-data" noValidate>
-//   <input className={styles.uploadfile_box_upload} readOnly="Documents" type="file" name="document"/>
-//   <button className={styles.uploadfile_box_document}>Documents</button>
-//   <div className = {styles.uploadfile_submit}><button type="submit"> DOCU </button></div>
-// </form>
-//
-// <form className={styles.uploadfile_box} method="post" action="/api/file/picture" encType="multipart/form-data" noValidate>
-//   <input className={styles.uploadfile_box_upload} readOnly="Picture" type="file" name="picture" />
-//   <button className={styles.uploadfile_box_picture}>Picture</button>
-//   <div className = {styles.uploadfile_submit}><button type="submit"> PICTU </button></div>
-// </form>
-
 Uploadfile.propTypes = {
     rnumber: React.PropTypes.number,
     username: React.PropTypes.string
